@@ -18,8 +18,16 @@ let calculator = (() => {
              .set('*',multiply)
              .set('/',divide)
 
-  
-    const enter = (value) => {operands=[...operands,value]}
+    const verifyOperators = (operator) => operators.has(operator)
+    const verifyNumbers = (number) => typeof number === "number"
+
+    const enter = (value) => {
+        if (operands.length === 0 || operands.length === 2){
+            verifyNumbers(value)? operands=[...operands,value] : alert('entrada inválida primeiro e ultimo valor devem ser números')
+        }else{
+            verifyOperators(value)? operands=[...operands,value] : alert('entrada inválida operador não encontrado')
+        }
+    }
 
     const equal = () => {
         let [a,operator,b] = operands

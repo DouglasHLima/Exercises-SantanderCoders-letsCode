@@ -13,42 +13,47 @@ const voters = [
     {name: 'Zack', age: 19, voted: false} 
 ]
 
-let voterAgeRange = (voters,startAge, endAge) => {
-    return voters.age >= startAge && voters.age <= endAge
+const YOUNG = {startAge: 18,endAge: 25}
+const MID = {startAge: 26,endAge: 35}
+const OLD = {startAge: 36,endAge: 55}
+
+const ageHandler = {YOUNG,MID,OLD}
+
+const counters = {
+    votersCount: 0,
+    peopleCount: 0
+}
+
+const metricModel = 
+    Object.keys(ageHandler).reduce(
+        (acc, type) => ({ ...acc,[type]: counters})
+        ,{}
+    )
+
+const handle = age => (metricModel,voter) => ({
+    ...metricModel,
+    [age]: {
+        votersCount: voter.voted
+            ? metricModel[age].votersCount + 1
+            : metricModel[age].votersCount,
+        peopleCount: metricModel[age].peopleCount + 1,
+    }
+})
+  
+const voterAgeRange = (voter,startAge, endAge) => {
+    return voter.age >= startAge && voter.age <= endAge
 } 
-
-
 
 voters.reduce(
     (totals,voter) => {
-        if(voterAgeRange(voter,18,25)){
-            return {
-                ...totals,
-                numYoungPeoples:  totals.numYoungPeoples + 1,
-                numYoungVotes:  voter.voted? totals.numYoungVotes + 1 : totals.numYoungVotes,
+
+        for (const type in ageHandler){
+            const {startAge, endAge} = ageHandler[type]
+
+            if (voterAgeRange(voter, startAge, endAge)){
+                return handle(type)(totals,voter)
             }
-        } 
-        if(voterAgeRange(voter,26,35)){
-            return {
-                ...totals,
-                numMidPeoples:  totals.numMidPeoples + 1,
-                numMidVotes:  voter.voted? totals.numMidVotes + 1 : totals.numMidVotes,
-            }
-        }
-        if(voterAgeRange(voter,36,55)){
-            return {
-                ...totals,
-                numOldPeoples:  totals.numOldPeoples + 1,
-                numOldVotes:  voter.voted? totals.numOldVotes + 1 : totals.numOldVotes,
-            }  
         }
     },
-    {
-        numYoungVotes: 0,
-        numYoungPeoples: 0,
-        numMidVotes: 0,
-        numMidPeoples: 0,
-        numOldVotes: 0,
-        numOldPeoples: 0
-    }
+    metricModel
 )
