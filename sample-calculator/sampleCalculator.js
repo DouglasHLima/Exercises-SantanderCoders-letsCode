@@ -29,7 +29,7 @@ let calculator = (() => {
         }
     }
 
-    const equal = () => {
+    const equals = () => {
         let [a,operator,b] = _operands
         let _operation = _operators.get(operator)
         _result = _operation(a,b)
@@ -46,7 +46,7 @@ let calculator = (() => {
 
     return{
         enter,
-        equal,
+        equal: equals,
         getHistoric,
         resetEnters,
         reset
