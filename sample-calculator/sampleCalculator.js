@@ -1,48 +1,48 @@
 let calculator = (() => {
 
-    let operands = []
-    let result = 0
-    const operators = new Map()
-    const historic = new Map()
+    let _operands = []
+    let _result = 0
+    const _operators = new Map()
+    const _historic = new Map()
     
-    const sum = (a,b)=> a+b;
+    const _sum = (a,b)=> a+b;
 
-    const subtraction = (a,b) => a-b;
+    const _subtraction = (a,b) => a-b;
 
-    const multiply = (a,b) => a*b;
+    const _multiply = (a,b) => a*b;
 
-    const divide = (a,b) =>  a/b
+    const _divide = (a,b) =>  a/b
 
-    operators.set('+',sum)
-             .set('-',subtraction)
-             .set('*',multiply)
-             .set('/',divide)
+    _operators.set('+',_sum)
+             .set('-',_subtraction)
+             .set('*',_multiply)
+             .set('/',_divide)
 
-    const verifyOperators = (operator) => operators.has(operator)
-    const verifyNumbers = (number) => typeof number === "number"
+    const _verifyOperators = (operator) => _operators.has(operator)
+    const _verifyNumbers = (number) => typeof number === "number"
 
     const enter = (value) => {
-        if (operands.length === 0 || operands.length === 2){
-            verifyNumbers(value)? operands=[...operands,value] : alert('entrada inválida primeiro e ultimo valor devem ser números')
+        if (_operands.length === 0 || _operands.length === 2){
+            _verifyNumbers(value)? _operands=[..._operands,value] : alert('entrada inválida primeiro e ultimo valor devem ser números')
         }else{
-            verifyOperators(value)? operands=[...operands,value] : alert('entrada inválida operador não encontrado')
+            _verifyOperators(value)? _operands=[..._operands,value] : alert('entrada inválida operador não encontrado')
         }
     }
 
     const equal = () => {
-        let [a,operator,b] = operands
-        let operation = operators.get(operator)
-        result = operation(a,b)
-        historic.set(operands.join(''),result)
-        operands = []
-        return result
+        let [a,operator,b] = _operands
+        let _operation = _operators.get(operator)
+        _result = _operation(a,b)
+        _historic.set(_operands.join(''),_result)
+        _operands = []
+        return _result
     }
 
-    const getHistoric = () => historic
+    const getHistoric = () => _historic
 
-    const resetEnters = () => operands = []
+    const resetEnters = () => _operands = []
 
-    const reset = () => {historic.clear()}
+    const reset = () => {_historic.clear()}
 
     return{
         enter,
