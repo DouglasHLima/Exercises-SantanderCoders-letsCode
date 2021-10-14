@@ -77,7 +77,7 @@ calculator.reset() // this will reset all historic
 ~~~
 
 ## *Exercise 4:*
-### [Specialist classes of Calculator](specialist-class-for-calculator\specialist-class-for-calculator.js)
+### [Specialist classes of Calculator](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/blob/main/specialist-class-for-calculator/specialist-class-for-calculator.js)
 A sample class to testing inheritance and polymorphism
 - Create a class of functions: list, enter, equals, reset.
 - the classes that inherit it should implement these functions and must be experts in a specific operation,
