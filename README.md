@@ -1,7 +1,6 @@
 #  EXERCÍCIOS DO CURSO WEB FULLSTACK SANTANDER CODERS - LETS CODE :
 
-## *exercício 1:*
-
+## *Exercise 1:*
 ### [**can go to the matrix:**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/can-go-to-the-matrix)
 
 create a series of name strings saying whether or not they can go to The Matrix >= 18 years old
@@ -27,8 +26,7 @@ expected output:
 ~~~
 
 
-## *exercício 2:*
-
+## *Exercise 2:*
 ### [**voters**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/voters)
 Given a number of potential voters, return an object that represents the voting results.
 include how many potential voters were between 18 and 25, how many were 26 to 35, how many were 36 to 55, and how many from each of these age groups actually voted. And return an object resulting from these properties.
@@ -58,8 +56,7 @@ YOUNG: {votersCount: 1, peopleCount: 4}
 ~~~
 
 
-## *exercício 3:*
-
+## *Exercise 3:*
 ### [**Calculator**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/sample-calculator)
 Create a calculator module with:
 - "enter" function
@@ -77,5 +74,31 @@ calculator.equals()
 calculator.enter('p') // this will show a alert mensage
 calculator.getHistoric() // this will show the historic of operations
 calculator.reset() // this will reset all historic
+~~~
+
+## *Exercise 4:*
+### [Specialist classes of Calculator](specialist-class-for-calculator\specialist-class-for-calculator.js)
+A sample class to testing inheritance and polymorphism
+- Create a class of functions: list, enter, equals, reset.
+- the classes that inherit it should implement these functions and must be experts in a specific operation,
+such as:
+- sum, 
+- subtraction, 
+- division, 
+- multiplication
+
+sugestion test:
+~~~
+let sum = new CalculatorSum // this will create a instante of specialist class for sum operations
+let subtract = new CalculatorSubtraction
+let divide = new CalculatorDivide
+let multiply = new CalculatorMultiply
+
+sum.enter(10) //repeat these steps with the other constants
+sum.enter(20)
+sum.enter(30)
+sum.equals()   //this will show a result of operation
+sum.list()     //this will show the historic
+sum.reset()    //this will clear the historic
 ~~~
 
