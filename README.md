@@ -1,4 +1,4 @@
-#  EXERCÍCIOS DO CURSO WEB FULLSTACK SANTANDER CODERS - LETS CODE :
+#  COURSE EXERCISES WEB FULLSTACK SANTANDER CODERS - LETS CODE :
 
 ## *Exercise 1:*
 ### [**can go to the matrix:**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/can-go-to-the-matrix)
