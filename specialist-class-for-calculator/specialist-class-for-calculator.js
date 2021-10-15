@@ -17,6 +17,7 @@ class CalculatorBaseFunctions {
         return this._historic
     }
     enter (value){
+        if(isNaN(value)) throw 'enter need be a number'
         this._operands = [...this._operands,value]
     }
     equals (callbackFn){
