@@ -25,9 +25,8 @@ class Booklist {
     }
 
     organize() {
-        this.booksRead = this.bookList.filter(book => book.isReaded === true);
+        this.booksRead = this.bookList.filter(book => book.isReaded === true).sort((a, b) => b.dateReaded - a.dateReaded);
         this.booksNotRead = this.bookList.filter(book => book.isReaded === false);
-        this.booksRead = this.booksRead.sort((a, b) => b.dateReaded - a.dateReaded)
     }
 
     getCurrent(){
@@ -53,6 +52,7 @@ class Booklist {
         this.getCurrent()
         if(!this.currentBook)throw 'No have a current Book'
         this.bookList[this.searchIndex()].isReaded = true
+        this.bookList[this.searchIndex()].dateReaded = new Date();
         this.organize()
         this.getCurrent()
         this.getNext() 
@@ -69,3 +69,6 @@ booklist.add(livro1)
 booklist.add(livro2)
 booklist.add(livro3)
 booklist.add(livro4)
+booklist.finishCurrentBook();
+
+console.log(booklist.booksRead);
