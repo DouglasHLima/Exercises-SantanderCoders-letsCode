@@ -31,7 +31,8 @@ class Booklist {
 
     getCurrent(){
         for (let value of this.bookList){
-            if (!value.isReaded) return this.currentBook = value
+            if(!value.isReaded) return this.currentBook = value
+            else this.currentBook = undefined
         }
         return this.currentBook? this.currentBook : 'no have a current book'
     }
