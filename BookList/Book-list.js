@@ -13,15 +13,14 @@ class Booklist {
         this.bookList = [];
         this.booksRead = [];
         this.booksNotRead = [];
-        this.nextBookToRead = {};
+        this.nextBookToRead = this.getNext();
         this.currentBook = this.getCurrent();
-        this.lastBookRead = {};    
+        this.lastBookRead = this.getLast();    
     }
 
     add(book){
         if (!(book instanceof Book)) throw 'is not a book'
         this.bookList = [...this.bookList,book]
-        this.organize()
     }
 
     organize() {
@@ -34,15 +33,16 @@ class Booklist {
             if(!value.isReaded) return this.currentBook = value
             else this.currentBook = undefined
         }
-        return this.currentBook? this.currentBook : 'no have a current book'
+        return 'no have a current book'
     }
 
     getNext(){
-        this.nextBookToRead = this.booksNotRead[1]
+        this.nextBookToRead = this.bookList[this.searchIndex(this.currentBook)+1]
         return this.nextBookToRead? this.nextBookToRead : 'no have next book'
     }
 
     getLast(){
+        this.organize()
         this.lastBookRead = this.booksRead[this.booksRead.length-1]
         return this.lastBookRead? this.lastBookRead : 'no have last book'
     }
