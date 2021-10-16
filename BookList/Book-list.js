@@ -42,7 +42,7 @@ class Booklist {
     }
 
     getLast(){
-        this.lastBookRead = this.booksRead[this.booksRead-1]
+        this.lastBookRead = this.booksRead[this.booksRead.length-1]
     }
 
     finishCurrentBook () {
@@ -60,5 +60,6 @@ class Booklist {
 }
 
 const livro1 = new Book('Legião estrangeira','infanto-juvenil','agatha Cristie', false)
+const livro2 = new Book('')
 const booklist = new Booklist()
 booklist.add(livro1)
