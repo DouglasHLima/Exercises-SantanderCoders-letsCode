@@ -23,8 +23,8 @@ class Booklist {
 
     add(book){
         if (!(book instanceof Book)) throw 'is not a book'
-        this.booklist= [...bookList,book]
-        organize()
+        this.bookList = [...this.bookList,book]
+        this.organize()
     }
 
     organize() {
@@ -49,10 +49,10 @@ class Booklist {
         for (current in bookList){
             if (this.currentBook === bookList[current]){
                 booklist[current].isRead = true
-                organize()
-                getCurrent()
-                getNext() 
-                getLast() 
+                this.organize()
+                this.getCurrent()
+                this.getNext() 
+                this.getLast() 
                 
             }
         }   
