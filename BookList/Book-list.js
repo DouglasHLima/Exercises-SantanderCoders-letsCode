@@ -58,3 +58,7 @@ class Booklist {
         }   
     }
 }
+
+const livro1 = new Book('Legião estrangeira','infanto-juvenil','agatha Cristie', false)
+const booklist = new Booklist()
+booklist.add(livro1)
