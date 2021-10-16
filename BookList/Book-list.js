@@ -14,7 +14,7 @@ class Booklist {
         this.booksRead = [];
         this.booksNotRead = [];
         this.nextBookToRead = {};
-        this.currentBook = {};
+        this.currentBook = this.getCurrent();
         this.lastBookRead = {};    
     }
 
@@ -30,7 +30,9 @@ class Booklist {
     }
 
     getCurrent(){
-        this.currentBook = this.booksNotRead[0]
+        for (let value of this.bookList){
+            if (!value.isReaded) return this.currentBook = value
+        }
         return this.currentBook? this.currentBook : 'no have a current book'
     }
 
