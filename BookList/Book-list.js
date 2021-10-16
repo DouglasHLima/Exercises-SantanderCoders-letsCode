@@ -22,7 +22,7 @@ class Booklist {
 
 
     add(book){
-        if (book instanceof Book === 'Book') throw 'is not a book'
+        if (book instanceof Book) throw 'is not a book'
         this.booklist= [...bookList,book]
         organize()
     }
