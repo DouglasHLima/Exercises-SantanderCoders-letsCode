@@ -15,11 +15,8 @@ class Booklist {
         this.booksNotRead = [];
         this.nextBookToRead = {};
         this.currentBook = {};
-        this.lastBookRead = {};
-        
+        this.lastBookRead = {};    
     }
-
-
 
     add(book){
         if (!(book instanceof Book)) throw 'is not a book'
@@ -28,38 +25,47 @@ class Booklist {
     }
 
     organize() {
-        this.booksRead = this.bookList.filter(book => book.isRead === true);
-        this.booksNotRead = this.bookList.filter(book => book.isRead === false);
+        this.booksRead = this.bookList.filter(book => book.isReaded === true);
+        this.booksNotRead = this.bookList.filter(book => book.isReaded === false);
         this.booksRead = this.booksRead.sort((a, b) => b.dateReaded - a.dateReaded)
     }
 
     getCurrent(){
         this.currentBook = this.booksNotRead[0]
+        return this.currentBook? this.currentBook : 'no have a current book'
     }
 
     getNext(){
         this.nextBookToRead = this.booksNotRead[1]
+        return this.nextBookToRead? this.nextBookToRead : 'no have next book'
     }
 
     getLast(){
         this.lastBookRead = this.booksRead[this.booksRead.length-1]
+        return this.lastBookRead? this.lastBookRead : 'no have last book'
+    }
+
+    searchIndex(){
+        return this.bookList.indexOf(this.currentBook)
     }
 
     finishCurrentBook () {
-        for (let current in this.bookList){
-            if (this.currentBook === this.bookList[current]){
-                this.booklist[current].isRead = true
-                this.organize()
-                this.getCurrent()
-                this.getNext() 
-                this.getLast() 
-                
-            }
-        }   
+        this.getCurrent()
+        if(!this.currentBook)throw 'No have a current Book'
+        this.bookList[this.searchIndex()].isReaded = true
+        this.organize()
+        this.getCurrent()
+        this.getNext() 
+        this.getLast()       
     }
 }
 
 const livro1 = new Book('Legião estrangeira','infanto-juvenil','agatha Cristie', false)
-const livro2 = new Book('')
+const livro2 = new Book('1984','ficção','George Owell', false)
+const livro3 = new Book('O mistério dos morros Dourados','infanto-juvenil','francisco marins', false)
+const livro4 = new Book('As crônicas de Narnia','infanto-juvenil','C.S. Lewis', false)
 const booklist = new Booklist()
 booklist.add(livro1)
+booklist.add(livro2)
+booklist.add(livro3)
+booklist.add(livro4)
