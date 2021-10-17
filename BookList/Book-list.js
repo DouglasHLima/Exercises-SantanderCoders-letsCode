@@ -4,7 +4,7 @@ class Book {
         this.genre = genre;
         this.author = author;
         this.isRead = isRead;
-        this.dateReaded = new Date(dateRead);
+        this.dateRead = new Date(dateRead);
     }
 }
 
@@ -14,7 +14,7 @@ class Booklist {
         this.booksRead = [];
         this.booksNotRead = [];
         this.nextBookToRead = this.getNext();
-        this.currentBook = this.getCurrent();
+        this._currentBook
         this.lastBookRead = this.getLast();    
     }
 
@@ -33,12 +33,12 @@ class Booklist {
         }).sort((a, b) => b.dateRead - a.dateRead);
        }
 
-    getCurrent(){   //retorna primeiro livro isRead false da lista
+    get currentBook(){   //retorna primeiro livro isRead false da lista
         for (let value of this.bookList){
-            if(!value.isRead) return this.currentBook = value
-            else this.currentBook = undefined
+            if(!value.isRead) return this._currentBook = value
+            else this._currentBook = undefined
         }
-        return 'There is not a current book'
+        if (!this._currentBook) throw 'There is not a current book'
     }
 
     getNext(){  //retorna proximo livro do books not read
@@ -53,19 +53,17 @@ class Booklist {
         return this.lastBookRead? this.lastBookRead : 'There is not a last book'
     }
 
-    searchIndex(){
-        return this.bookList.indexOf(this.currentBook)
-    }
+    // searchIndex(){
+    //     return this.bookList.indexOf(this.currentBook)
+    //}
 
     finishCurrentBook () {
-        this.getCurrent()
         if(!this.currentBook)throw 'There is not a current book. Please, select a book to finish.'
-        this.bookList[this.searchIndex()].isRead = true
-        this.bookList[this.searchIndex()].dateRead = new Date();
+        this.currentBook.dateRead = new Date();
+        this.currentBook.isRead = true
         this.organize()
-        this.getCurrent()
-        this.getNext() 
-        this.getLast()       
+        this.getNext()
+        this.getLast()
     }
 }
 
