@@ -1,10 +1,10 @@
 class Book {
-    constructor(title, genre, author, isReaded, dateReaded) {
+    constructor(title, genre, author, isRead, dateRead) {
         this.title = title;
         this.genre = genre;
         this.author = author;
-        this.isReaded = isReaded;
-        this.dateReaded = new Date(dateReaded);
+        this.isRead = isRead;
+        this.dateReaded = new Date(dateRead);
     }
 }
 
@@ -19,32 +19,38 @@ class Booklist {
     }
 
     add(book){
-        if (!(book instanceof Book)) throw 'is not a book'
+        if (!(book instanceof Book)) throw 'It is not a book'
         this.bookList = [...this.bookList,book]
     }
 
     organize() {
-        this.booksRead = this.bookList.filter(book => book.isReaded === true).sort((a, b) => b.dateReaded - a.dateReaded);
-        this.booksNotRead = this.bookList.filter(book => book.isReaded === false);
-    }
+        this.booksRead = []
+        this.booksNotRead = []
+        this.booksRead = this.bookList.filter(
+            (book) => {
+                if (book.isRead === true) return book
+                this.booksNotRead.push(book)
+        }).sort((a, b) => b.dateRead - a.dateRead);
+       }
 
-    getCurrent(){
+    getCurrent(){   //retorna primeiro livro isRead false da lista
         for (let value of this.bookList){
-            if(!value.isReaded) return this.currentBook = value
+            if(!value.isRead) return this.currentBook = value
             else this.currentBook = undefined
         }
-        return 'no have a current book'
+        return 'There is not a current book'
     }
 
-    getNext(){
-        this.nextBookToRead = this.bookList[this.searchIndex(this.currentBook)+1]
-        return this.nextBookToRead? this.nextBookToRead : 'no have next book'
+    getNext(){  //retorna proximo livro do books not read
+        this.organize()
+        this.nextBookToRead = this.booksNotRead[1]
+        return this.nextBookToRead? this.nextBookToRead : 'There is not a next book'
     }
 
-    getLast(){
+    getLast(){   
         this.organize()
         this.lastBookRead = this.booksRead[this.booksRead.length-1]
-        return this.lastBookRead? this.lastBookRead : 'no have last book'
+        return this.lastBookRead? this.lastBookRead : 'There is not a last book'
     }
 
     searchIndex(){
@@ -53,9 +59,9 @@ class Booklist {
 
     finishCurrentBook () {
         this.getCurrent()
-        if(!this.currentBook)throw 'No have a current Book'
-        this.bookList[this.searchIndex()].isReaded = true
-        this.bookList[this.searchIndex()].dateReaded = new Date();
+        if(!this.currentBook)throw 'There is not a current book. Please, select a book to finish.'
+        this.bookList[this.searchIndex()].isRead = true
+        this.bookList[this.searchIndex()].dateRead = new Date();
         this.organize()
         this.getCurrent()
         this.getNext() 
