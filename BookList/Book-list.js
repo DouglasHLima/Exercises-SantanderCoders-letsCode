@@ -4,7 +4,11 @@
     Practice creating objects and methods that interact with one another
     Instance several objects that are contained within a special container object
     Encapsulate functionality within the proper class
-    @Authors:  */
+    @author: DouglasHLima => https://github.com/DouglasHLima
+    @author: Paula Lustosa => https://github.com/paulaclustosa
+    @author: Mirian Regina Mendes Rizzi => https://github.com/mirianrizzi
+    @author: Anderson Cardoso => https://github.com/AndeCardoso
+    */
 
 class Book {
     set dateRead(date){new Date(date)}
@@ -38,7 +42,6 @@ class Booklist {
         this.currentBook.read()
     }
     get booksRead() { //Number of books marked as read
-        
         return this.bookList.filter(book => book.isRead).length
     }
     get booksNotRead() { //Number of books marked not read yet
