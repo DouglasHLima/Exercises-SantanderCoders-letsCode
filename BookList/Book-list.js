@@ -61,6 +61,9 @@ class Booklist {
     }
 }
 
+
+// comands for test
+
 const livro1 = new Book('Legião estrangeira','infanto-juvenil','agatha Cristie', false)
 const livro2 = new Book('1984','ficção','George Owell', false)
 const livro3 = new Book('O mistério dos morros Dourados','infanto-juvenil','francisco marins', false)
