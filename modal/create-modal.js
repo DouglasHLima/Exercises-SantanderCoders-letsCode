@@ -5,15 +5,10 @@ const createModal = (function() {
     const _inputModalForm = document.querySelector('form input')
     
     const _IS_OPEN_CLASS = '--is-open'
-    let _sucessFn
-    let _cancelFn
-
 
     const open = (config) => {
         _modal.classList.add(_IS_OPEN_CLASS)
-        if(config.sucess) _sucessFn = config.sucess
-        if(config.fail) _cancelFn = config.fail
-        _setButtons(_sucessFn,_cancelFn)
+        _setButtons(config.sucess,config.fail)
     }
     const _setButtons = (successFn,cancelFn) => {
         _modalForm.onsubmit = (event) => {
@@ -22,8 +17,8 @@ const createModal = (function() {
         }
         _btnCancel.onclick = () => _executeFn(cancelFn)
     }
-    const _executeFn = (callbackfn) => { 
-        callbackfn(_inputModalForm.value)
+    const _executeFn = (callbackfn) => {
+        if(callbackfn) callbackfn(_inputModalForm.value)
         _resetModalForm()
         _close()
     }
