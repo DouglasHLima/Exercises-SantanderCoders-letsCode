@@ -187,4 +187,23 @@ bookList.nextBookToRead;
 bookList.lastBookRead;
 ~~~
 
+## <a id="exercise7"></a>*Exercise 7:*
+### [The Users List]()
+
+create a list of users using JS and DOM to manipulate the registration of new users and the removal of these
+
+sugestion test:
+~~~js
+//download the project and open index.html file
+//add users and submit
+//remove the users on button remove
+~~~
+
+
+## <a id="exercise8"></a>*Exercise 8:*
+### [Modal in js]()
+
+create a modal that receives and performs high-order functions. 
+The modal receives an object as a settings parameter and operates visibility with stylization in css
+
 
