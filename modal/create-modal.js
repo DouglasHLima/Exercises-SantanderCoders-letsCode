@@ -1,8 +1,25 @@
 const createModal = (function() {
+    
+
+    
     const _modal = document.querySelector('.modal')
-    const _btnCancel = document.querySelector("button[name='cancel']")
     const _modalForm = document.querySelector('form.modal-form')
-    const _inputModalForm = document.querySelector('form input')
+    
+    const _inputModalForm = document.createElement('input')
+    _inputModalForm.setAttribute('type','email')
+    _inputModalForm.required = true
+    _inputModalForm.placeholder = 'Digite seu Email'
+    
+    const _btnCancel = document.createElement('button')
+    _btnCancel.textContent = 'cancel'
+
+    const _submitButton = document.createElement('button')
+    _submitButton.setAttribute('type','submit')
+    _submitButton.textContent = 'ok'
+
+    _modalForm.appendChild(_inputModalForm)
+    _modalForm.appendChild(_submitButton)
+    _modalForm.appendChild(_btnCancel)
     
     const _IS_OPEN_CLASS = '--is-open'
 
