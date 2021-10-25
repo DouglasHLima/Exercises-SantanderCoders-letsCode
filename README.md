@@ -9,6 +9,8 @@ nº | Exercise
 4  | [Specialist classes of Calculator](#exercise4)
 5  | [class Trainning](#exercise5)
 6  | [The Reading List](#exercise6)
+7  | [The User List](#exercise7)
+8  | [Modal in JS](#exercise8)
 
 ## <a id="exercise1"></a>*Exercise 1:*
 ### [**can go to the matrix:**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/can-go-to-the-matrix)
@@ -188,7 +190,7 @@ bookList.lastBookRead;
 ~~~
 
 ## <a id="exercise7"></a>*Exercise 7:*
-### [The Users List]()
+### [The Users List](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/user-list)
 
 create a list of users using JS and DOM to manipulate the registration of new users and the removal of these
 
@@ -201,7 +203,7 @@ sugestion test:
 
 
 ## <a id="exercise8"></a>*Exercise 8:*
-### [Modal in js]()
+### [Modal in js](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/modal)
 
 create a modal that receives and performs high-order functions. 
 The modal receives an object as a settings parameter and operates visibility with stylization in css
