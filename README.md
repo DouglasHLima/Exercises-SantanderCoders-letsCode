@@ -101,10 +101,10 @@ such as:
 
 sugestion test:
 ~~~js
-let sum = new CalculatorSum // this will create a instante of specialist class for sum operations
-let subtract = new CalculatorSubtraction
-let divide = new CalculatorDivide
-let multiply = new CalculatorMultiply
+const sum = new CalculatorSum // this will create a instante of specialist class for sum operations
+const subtract = new CalculatorSubtraction
+const divide = new CalculatorDivide
+const multiply = new CalculatorMultiply
 
 sum.enter(10) //repeat these steps with the other constants
 sum.enter(20)
