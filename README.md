@@ -10,7 +10,7 @@ nº | Exercise
 5  | [class Trainning](#exercise5)
 6  | [The Reading List](#exercise6)
 7  | [The User List](#exercise7)
-8  | [Modal in JS](#exercise8)
+8  | [Dinamic Modal in JS](#exercise8)
 
 ## <a id="exercise1"></a>*Exercise 1:*
 ### [**can go to the matrix:**](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/can-go-to-the-matrix)
@@ -203,9 +203,25 @@ sugestion test:
 
 
 ## <a id="exercise8"></a>*Exercise 8:*
-### [Modal in js](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/modal)
+### [Dinamic Modal in js](https://github.com/DouglasHLima/Exercises-SantanderCoders-letsCode/tree/main/modal)
 
 create a modal that receives and performs high-order functions. 
-The modal receives an object as a settings parameter and operates visibility with stylization in css
+The modal receives an object as a settings parameter and operates visibility with stylization in css.
+The modal receives an object that configures the inputs and texts that will be displayed dynamically, and also an object with functions that will execute in success or failure of submit.
+
+configuration objects:
+~~~js
+const settings = [
+    {labelName:'Nome', element: 'input', type:'name', placeholder: 'Insira o primeiro nome', required: true},
+    {labelName:'Sobrenome', element: 'input', type:'lastname', placeholder: 'sobrenome', required: false},
+    {labelName:'Email', element: 'input', type:'email', placeholder:'Insira seu Email', required: true},
+    {labelName:'Resumo', element: 'input', type:'textarea', placeholder:'uma breve descrição', required: false}
+]
+
+const callbackfn = {
+    sucess: value => {console.log('enviando os dados: ',value)},
+    fail: () => console.log('cliente cancelou')
+}
+~~~
 
 
