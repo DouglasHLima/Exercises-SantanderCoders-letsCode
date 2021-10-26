@@ -5,36 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modal</title>
-    <style>
-        body {
-            background-color: antiquewhite;
-        }
-        .btnOpenModal{
-            background-color: orange;
-        }
-
-        .modal {
-      background: #795151;
-      box-shadow: 5px 5px 30px rgb(0 0 0 / 10%);
-      box-sizing: border-box;
-      width: 200px;
-      height: 150px;
-      opacity: 1;
-      padding: 15px;
-      position: fixed;
-      transition: .15s all ease;
-      top: calc(50% - 75px);
-      left: calc(50% - 100px);
-    }
-     .modal:not(.--is-open) {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(.6);
-    }
-
-
-
-    </style>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <button name="open-modal" class="btnOpenModal">Open Modal</button>

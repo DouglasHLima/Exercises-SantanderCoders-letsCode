@@ -1,0 +1,42 @@
+body {
+    background-color: antiquewhite;
+}
+.btnOpenModal{
+    background-color: orange;
+}
+
+.modal {
+
+background: #a09972;
+box-shadow: 5px 5px 30px rgb(0 0 0 / 10%);
+box-sizing: border-box;
+width: 320px;
+height: auto;
+opacity: 1;
+padding: 15px;
+position: fixed;
+transition: .15s all ease;
+top: calc(50% - 80px);
+left: calc(50% - 160px);
+
+}
+.modal:not(.--is-open) {
+opacity: 0;
+pointer-events: none;
+transform: scale(.6);
+}
+
+.modal label {
+color: rgb(48, 59, 51);
+font-size: 18px;
+margin-right: 10px;
+}
+.modal div{
+margin: 10px;
+width: fit-content;
+height: fit-content;
+}
+.modal div input{
+position: absolute;
+right: 10px;
+}
