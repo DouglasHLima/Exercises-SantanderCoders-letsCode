@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+    
         body{
             background: rgb(116,40,176);
             background: linear-gradient(90deg, rgba(116,40,176,1) 0%, rgba(150,134,170,1) 0%, rgba(170,141,210,1) 2%, rgba(0,212,255,1) 100%);
@@ -13,6 +14,11 @@
             justify-content: center;
 
         }
+
+        div{
+            margin: 5px;
+        }
+
         main{
             background-color: rgba(131, 58, 153, 0.137);
             width: 1200px;
@@ -29,24 +35,47 @@
         button{
             background-color: orange;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            width: 150px;
+            height: max-content;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             
         }
         .list{
-            height: fit-content;
+            height: max-content;
             background-color: aliceblue;
             display: flex;
             align-items: center;
             flex-direction: column;
             margin-top: 50px;
+            font-size: 30px;
+            
         }
+
+        h1{
+            font-size: 40px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container{
+            display: flex;
+            flex: row wrap;
+        }
+
+
     </style>
     <title>Desafio Promise</title>
 </head>
 <body>
     <main>
-        <h1>"Desafio Promise [Douglas Henrique de Lima]"</h1>
+        <h1>Desafio Promise [Douglas Henrique de Lima]</h1>
         <button onclick="generetorRandomArrayWithDelay.onClickListGenerator(3,'.list')">Gerar Lista</button>
         <div class="list"></div>
+        <div class='container'>
+        <div class="array0"></div>
+        <div class="array1"></div>
+        <div class="array2"></div>
+    </div>
     </main>   
     <script>
 
@@ -97,6 +126,7 @@
                 for (let it = 0; it < repeatValue; it++){
                     value = await makeArrayWithDelay()
                     console.log(value)
+                    addToHtml(value,`.array${it}`)
                 array = [...array,value]
                 }
                 addToHtml(array,target)
