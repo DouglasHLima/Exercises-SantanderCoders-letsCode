@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background: rgb(116,40,176);
+            background: linear-gradient(90deg, rgba(116,40,176,1) 0%, rgba(150,134,170,1) 0%, rgba(170,141,210,1) 2%, rgba(0,212,255,1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+        main{
+            background-color: rgba(131, 58, 153, 0.137);
+            width: 1200px;
+            margin: auto;
+            margin-top: 5% ;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        button{
+            background-color: orange;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            
+        }
+        .list{
+            height: fit-content;
+            background-color: aliceblue;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+        }
+    </style>
+    <title>Desafio Promise</title>
+</head>
+<body>
+    <main>
+        <h1>"Desafio Promise [Douglas Henrique de Lima]"</h1>
+        <button onclick="generetorRandomArrayWithDelay.onClickListGenerator(3,'.list')">Gerar Lista</button>
+        <div class="list"></div>
+    </main>   
+    <script>
+
+
+        const  generetorRandomArrayWithDelay = (function() {
+
+            const TIME_RANGE = [1000,10000]
+            const VALUES_RANGE = [0,10]
+
+            const delay = (time) => {
+                return new Promise(resolve => (setTimeout(resolve,time)))
+            }
+
+            const generateRangedRandom = (range) => {
+                [min,max] = range
+                return (Math.round(Math.random()*(max - min )+min))
+            }
+
+            const createRandomArray = (range) => {
+                return (Array.from( 
+                    {length: range},
+                    () => Math.round(Math.random()*range)
+                ))
+            }
+    
+            const makeArrayWithDelay = async() => {
+                const time = generateRangedRandom(TIME_RANGE)
+                const timeOut = await delay(time)
+                const range = generateRangedRandom(VALUES_RANGE)
+                const array =  await createRandomArray(range)
+                return array
+            } 
+
+            const resetValues = (target) => {
+                document.querySelector(target).innerText = ''
+            }
+
+            const addToHtml =  (array,target) => {
+                resetValues(target)
+                const div = document.createElement('div')
+                const element = document.querySelector(target)
+                div.innerText = array
+                element.appendChild(div)
+            }
+
+            const onClickListGenerator = async(repeatValue,target) => {
+                let array = []
+                for (let it = 0; it < repeatValue; it++){
+                    value = await makeArrayWithDelay()
+                    console.log(value)
+                array = [...array,value]
+                }
+                addToHtml(array,target)
+            }
+
+            return {
+                    onClickListGenerator
+                }
+        }
+        )()
+
+
+    </script>
+
+</body>
+</html>

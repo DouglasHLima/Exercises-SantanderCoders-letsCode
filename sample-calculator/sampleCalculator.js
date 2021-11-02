@@ -46,7 +46,7 @@ let calculator = (() => {
 
     return{
         enter,
-        equal: equals,
+        equals,
         getHistoric,
         resetEnters,
         reset
