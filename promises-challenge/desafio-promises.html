@@ -15,10 +15,6 @@
 
         }
 
-        div{
-            margin: 5px;
-        }
-
         main{
             background-color: rgba(131, 58, 153, 0.137);
             width: 1200px;
@@ -57,24 +53,14 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        .container{
-            display: flex;
-            flex: row wrap;
-        }
-
-
     </style>
     <title>Desafio Promise</title>
 </head>
 <body>
     <main>
         <h1>Desafio Promise [Douglas Henrique de Lima]</h1>
-        <button onclick="generetorRandomArrayWithDelay.onClickListGenerator(3,'.list')">Gerar Lista</button>
+        <button onclick="generetorRandomArrayWithDelay.runPromises('.list')">Gerar Lista</button>
         <div class="list"></div>
-        <div class='container'>
-        <div class="array0"></div>
-        <div class="array1"></div>
-        <div class="array2"></div>
     </div>
     </main>   
     <script>
@@ -82,58 +68,58 @@
 
         const  generetorRandomArrayWithDelay = (() =>{
 
-            const TIME_RANGE = [1000,10000]
-            const VALUES_RANGE = [0,10]
+            const _TIME_RANGE = [1000,10000]
+            const _VALUES_RANGE = [0,10]
 
-            const delay = (time) => {
+            const _delay = (time) => {
+                console.log('time: ', time)
                 return new Promise(resolve => (setTimeout(resolve,time)))
             }
 
-            const generateRangedRandom = (range) => {
+            const _generateRangedRandom = (range) => {
                 [min,max] = range
                 return (Math.round(Math.random()*(max - min )+min))
             }
 
-            const createRandomArray = (range) => {
+            const _createRandomArray = (range) => {
                 return (Array.from( 
                     {length: range},
-                    () => Math.round(Math.random()*range)
-                ))
+                    () => _generateRangedRandom(_VALUES_RANGE))
+                )
             }
     
-            const makeArrayWithDelay = async() => {
-                const time = generateRangedRandom(TIME_RANGE)
-                const timeOut = await delay(time)
-                const range = generateRangedRandom(VALUES_RANGE)
-                const array =  await createRandomArray(range)
-                return array
-            } 
-
-            const resetValues = (target) => {
+            const _makeArrayWithDelay = async() => {
+                const time = _generateRangedRandom(_TIME_RANGE)
+                const range = _generateRangedRandom(_VALUES_RANGE)
+                return await _delay(time).then(() => _createRandomArray(range))
+            }
+            
+            const _resetValues = (target) => {
                 document.querySelector(target).innerText = ''
             }
 
-            const addToHtml =  (array,target) => {
-                resetValues(target)
-                const div = document.createElement('div')
+            const _addToHtml =  (array,target) => {
                 const element = document.querySelector(target)
-                div.innerText = array
-                element.appendChild(div)
+                element.innerText += array
             }
 
-            const onClickListGenerator = async(repeatValue,target) => {
-                let array = []
-                for (let it = 0; it < repeatValue; it++){
-                    value = await makeArrayWithDelay()
-                    console.log(value)
-                    addToHtml(value,`.array${it}`)
-                array = [...array,value]
-                }
-                addToHtml(array,target)
+            const runPromises = async(target) => {
+                _resetValues(target)
+                const promise1 = _makeArrayWithDelay()
+                const promise2 = _makeArrayWithDelay()
+                const promise3 = _makeArrayWithDelay()
+
+                Promise.allSettled([promise1,promise2,promise3])
+                    .then(result => result.map(
+                        promiseSolved => {
+                            console.log(promiseSolved.value)
+                            return promiseSolved.value
+                        })
+                    ).then((array) => _addToHtml(array,target))
             }
 
             return {
-                    onClickListGenerator
+                    runPromises
                 }
         }
         )()
