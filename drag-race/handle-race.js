@@ -42,7 +42,7 @@ const insertResultsOnHtml = (target,scores) => {
         li.innerText = `${element.name} || time: ${timeFormated} millis`
         ul.appendChild(li)
     })
-    target.innerText = '00:00:00'
+    target.innerText = ''
     target.appendChild(ul)
 }
 
